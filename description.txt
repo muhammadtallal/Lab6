@@ -1,0 +1,6 @@
+Name: Muhammad Tallal
+Class: BESE-4B
+Reg. No.: 04939
+
+Description:
+I have used javascript ajax to display two lists of colours. I've also implemented the functions for focus but there seems to be a problem with it.

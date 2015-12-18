@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript">
+function displayList() {
+		var cData;
+
+		var Req = new XMLHttpRequest();
+		Req.onload = reqListener;
+		Req.open("get", "ColorMap.json", true);
+		Req.send();
+
+		function reqListener(e) {
+			cData = JSON.parse(this.responseText);
+			
+			var i=0,j=0;
+			j=cData.length-1;
+			for (i = 0; i < cData.length; i++)
+			{
+				var li1 = document.createElement("li");
+				li1.className = "litem";
+				li1.id = 7 + j ;
+				var t1 = document.createTextNode(cData[j].color + " ");
+				var s1 = document.createTextNode(cData[j].value);
+				li1.onclick=  function(){ onfocb(j); } ;
+				li1.appendChild(t1);
+				li1.appendChild(s1);
+				document.getElementById("list2").appendChild(li1);
+				
+				var li = document.createElement("li");
+				li.className = "litem";
+				li.id = i;
+				var t = document.createTextNode(cData[i].color + " ");
+				var s = document.createTextNode(cData[i].value);
+				li.appendChild(t);
+				li.appendChild(s);
+				document.getElementById("list1").appendChild(li);
+				
+				li.onclick=  function(){ focus1(this.id);  } ;
+				li1.onclick=  function(){ focus2(this.id);  } ;
+				j--;
+			}
+		}
+	}
+function focus1(x) {
+console.log(x);
+  document.getElementById(x).style.backgroundColor = "#808080";
+  var z=parseInt(x,10)+7;
+  console.log(z);
+  document.getElementById(z).style.backgroundColor = "#808080";
+}
+
+function focus2(x) {
+console.log(x);
+  document.getElementById(x).style.backgroundColor = "#808080";
+  console.log(x-7);
+  document.getElementById(x-7).style.backgroundColor = "#808080";
+}
+
+
+</script>
+</head>
+
+<body onload="displayList()">
+
+	<ul id="list1" style="height:100px; width:50%; overflow:hidden; overflow-y:scroll;">
+	</ul>
+
+	<ul id="list2" style="height:100px; width:50%; overflow:hidden; overflow-y:scroll;">
+	</ul>
+
+
+</body>
+
+
+</html>
